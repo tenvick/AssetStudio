@@ -44,6 +44,8 @@
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.specifyUnityVersion = new System.Windows.Forms.ToolStripTextBox();
             this.showExpOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileOffsetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripTextBox();
             this.modelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAllObjectssplitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSelectedObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +81,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.sceneTreeView = new AssetStudioGUI.GOHierarchy();
             this.treeSearch = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.assetListView = new System.Windows.Forms.ListView();
@@ -116,6 +117,8 @@
             this.classTextBox = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dumpTextBox = new System.Windows.Forms.TextBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
@@ -126,6 +129,7 @@
             this.exportAnimatorwithselectedAnimationClipMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goToSceneHierarchyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOriginalFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sceneTreeView = new AssetStudioGUI.GOHierarchy();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -143,6 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.FMODprogressBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FMODvolumeBar)).BeginInit();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -214,7 +219,8 @@
             this.enablePreview,
             this.displayInfo,
             this.toolStripMenuItem14,
-            this.showExpOpt});
+            this.showExpOpt,
+            this.fileOffsetToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -273,6 +279,22 @@
             this.showExpOpt.Size = new System.Drawing.Size(223, 22);
             this.showExpOpt.Text = "Export options";
             this.showExpOpt.Click += new System.EventHandler(this.showExpOpt_Click);
+            // 
+            // fileOffsetToolStripMenuItem
+            // 
+            this.fileOffsetToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem17});
+            this.fileOffsetToolStripMenuItem.Name = "fileOffsetToolStripMenuItem";
+            this.fileOffsetToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.fileOffsetToolStripMenuItem.Text = "File Offset";
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(120, 23);
+            this.toolStripMenuItem17.Text = "0";
+            this.toolStripMenuItem17.ToolTipText = "file offset value";
             // 
             // modelToolStripMenuItem
             // 
@@ -573,17 +595,6 @@
             this.tabPage1.Text = "Scene Hierarchy";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // sceneTreeView
-            // 
-            this.sceneTreeView.CheckBoxes = true;
-            this.sceneTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sceneTreeView.HideSelection = false;
-            this.sceneTreeView.Location = new System.Drawing.Point(0, 21);
-            this.sceneTreeView.Name = "sceneTreeView";
-            this.sceneTreeView.Size = new System.Drawing.Size(472, 587);
-            this.sceneTreeView.TabIndex = 1;
-            this.sceneTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.sceneTreeView_AfterCheck);
-            // 
             // treeSearch
             // 
             this.treeSearch.Dock = System.Windows.Forms.DockStyle.Top;
@@ -732,6 +743,7 @@
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
@@ -982,6 +994,29 @@
             this.dumpTextBox.TabIndex = 0;
             this.dumpTextBox.WordWrap = false;
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.textBox1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(768, 606);
+            this.tabPage6.TabIndex = 2;
+            this.tabPage6.Text = "Log";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(762, 600);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.WordWrap = false;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1063,6 +1098,17 @@
             this.showOriginalFileToolStripMenuItem.Visible = false;
             this.showOriginalFileToolStripMenuItem.Click += new System.EventHandler(this.showOriginalFileToolStripMenuItem_Click);
             // 
+            // sceneTreeView
+            // 
+            this.sceneTreeView.CheckBoxes = true;
+            this.sceneTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sceneTreeView.HideSelection = false;
+            this.sceneTreeView.Location = new System.Drawing.Point(0, 21);
+            this.sceneTreeView.Name = "sceneTreeView";
+            this.sceneTreeView.Size = new System.Drawing.Size(472, 587);
+            this.sceneTreeView.TabIndex = 1;
+            this.sceneTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.sceneTreeView_AfterCheck);
+            // 
             // AssetStudioGUIForm
             // 
             this.AllowDrop = true;
@@ -1103,6 +1149,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.FMODvolumeBar)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -1209,6 +1257,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
         private System.Windows.Forms.ToolStripTextBox specifyUnityVersion;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem fileOffsetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripMenuItem17;
     }
 }
 

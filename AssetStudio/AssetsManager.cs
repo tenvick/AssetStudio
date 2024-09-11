@@ -11,6 +11,7 @@ namespace AssetStudio
     public class AssetsManager
     {
         public string SpecifyUnityVersion;
+        public int FILE_OFFSET = 0;
         public List<SerializedFile> assetsFileList = new List<SerializedFile>();
 
         internal Dictionary<string, int> assetsFileIndexCache = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
@@ -62,8 +63,39 @@ namespace AssetStudio
             ProcessAssets();
         }
 
+        private string RemFileOffset(string path)
+        {
+            var endStr = $"_rm_{FILE_OFFSET}";
+            if (FILE_OFFSET<= 0 ||  Path.GetFileName(path).IndexOf("_rm_")>=0) return path;
+
+            var targetPath = path+endStr;
+            if (!File.Exists(targetPath))
+            {
+                using(var fs = File.OpenRead(path))
+                {
+                    if (fs.Length < FILE_OFFSET)
+                    {
+                        throw new ArgumentException($"The file is smaller than the number of bytes{FILE_OFFSET} to remove.");
+                    }
+                    fs.Seek(FILE_OFFSET, SeekOrigin.Begin);
+
+                    using (var newFs = File.OpenWrite(targetPath))
+                    {
+                        fs.CopyTo(newFs);
+                    }
+
+                    Logger.Info($"Remove({FILE_OFFSET}) save to {targetPath}");
+                }
+            }
+
+            return targetPath;
+        }
+
         private void LoadFile(string fullName)
         {
+            fullName = RemFileOffset(fullName);
+            Logger.Info($"LoadFile {fullName}");
+
             var reader = new FileReader(fullName);
             LoadFile(reader);
         }

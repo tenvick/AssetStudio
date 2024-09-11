@@ -119,13 +119,26 @@ namespace AssetStudioGUI
             }
         }
 
+        private void SetOptionValueToAssetsManager()
+        {
+            assetsManager.SpecifyUnityVersion = specifyUnityVersion.Text;
+            int offset = 0;
+           
+            if(int.TryParse(toolStripMenuItem17.Text,out offset))
+            {
+                assetsManager.FILE_OFFSET = offset;
+                Logger.Info($" FILE_OFFSET is {assetsManager.FILE_OFFSET}");
+            }
+
+        }
+
         private async void AssetStudioGUIForm_DragDrop(object sender, DragEventArgs e)
         {
             var paths = (string[])e.Data.GetData(DataFormats.FileDrop);
             if (paths.Length > 0)
             {
                 ResetForm();
-                assetsManager.SpecifyUnityVersion = specifyUnityVersion.Text;
+                SetOptionValueToAssetsManager();
                 if (paths.Length == 1 && Directory.Exists(paths[0]))
                 {
                     await Task.Run(() => assetsManager.LoadFolder(paths[0]));
@@ -145,7 +158,7 @@ namespace AssetStudioGUI
             {
                 ResetForm();
                 openDirectoryBackup = Path.GetDirectoryName(openFileDialog1.FileNames[0]);
-                assetsManager.SpecifyUnityVersion = specifyUnityVersion.Text;
+                SetOptionValueToAssetsManager();
                 await Task.Run(() => assetsManager.LoadFiles(openFileDialog1.FileNames));
                 BuildAssetStructures();
             }
@@ -159,7 +172,7 @@ namespace AssetStudioGUI
             {
                 ResetForm();
                 openDirectoryBackup = openFolderDialog.Folder;
-                assetsManager.SpecifyUnityVersion = specifyUnityVersion.Text;
+                SetOptionValueToAssetsManager();
                 await Task.Run(() => assetsManager.LoadFolder(openFolderDialog.Folder));
                 BuildAssetStructures();
             }
@@ -1207,12 +1220,14 @@ namespace AssetStudioGUI
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(() => { toolStripStatusLabel1.Text = statusText; }));
+                BeginInvoke(new Action(() => { toolStripStatusLabel1.Text = statusText; textBox1.Text += $"{statusText}\r\n"; }));
             }
             else
             {
                 toolStripStatusLabel1.Text = statusText;
+                textBox1.Text += $"{statusText}\r\n";
             }
+
         }
 
         private void ResetForm()
